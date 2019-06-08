@@ -1,0 +1,11 @@
+devices:
+    - xs
+    - sd_landscape
+    - sd_portrait
+    - md
+    - lg
+    - xl
+    
+devices:
+    - iPhone SE
+    - iPhone X

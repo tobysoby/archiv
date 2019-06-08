@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+
+require 'highline'
+
+root = File.expand_path('../..', __FILE__)
+require File.join(root, %w[lib archiv])
+
+# code
+
+cli = HighLine.new
+
+Archiv.initiateOptions
+
+Archiv.cleanFolders
+
+if Archiv.recordOptions && Archiv.compareOptions
+    puts "whatcha wanna? record or compare?"
+elsif Archiv.recordOptions
+    # check if there already are archived screenshots
+    if !Dir['./archiv/*'].empty?
+        answer = cli.ask "There are archived screenshots. Do you wanna kill these? (y/n)"      
+        if answer == "y" || answer == "yes"
+            Archiv.cleanArchivedScreenshots
+        else
+            puts "byebye!"
+            exit(true)
+        end
+    end  
+
+    # take screenshots
+    Archiv.takeScreenshots
+    Archiv.recordScreenshots
+elsif Archiv.compareOptions
+    # compare url and viewports settings
+    Archiv.compareUrlsAndViewports
+    # take screenshots
+    Archiv.takeScreenshots
+    Archiv.compareScreenshots
+    # check if there were differences
+    diffs = Archiv.getDiffFiles
+    if diffs.length > 0
+        Archiv.buildCompareReport
+        puts diffs
+        raise ArgumentError.new("Differences found!")
+    else
+        puts "No differences found :-)"
+    end
+end
+
+if Archiv.reportOptions
+    # take screenshots
+    Archiv.takeScreenshots
+    Archiv.buildReport
+end

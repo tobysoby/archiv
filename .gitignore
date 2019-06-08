@@ -1,0 +1,10 @@
+/screenshots
+/report
+/archiv
+/test/archiv/screenshots
+
+/compare
+.vscode/
+.DS_Store
+
+Gemfile.lock

@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-design-blocks/1.0.2/css/froala_blocks.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+
+<header data-block-type="headers" data-id="1" class="">
+<div class="container">
+    <nav class="navbar navbar-expand-md">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav0" aria-controls="navbarNav0" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarNav0">
+        <ul class="navbar-nav mr-auto ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Archiv <span class="sr-only">(current)</span></a>
+        </li>
+        <!--<li class="nav-item">
+            <a class="nav-link" href="https://www.froala.com">Features</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://www.froala.com">Pricing</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://www.froala.com">Team</a>
+        </li>-->
+        </ul>
+    </div>
+    </nav>
+</div>
+</header>
+    <div>
+        <%= @url[:name] %>
+        <p>The following viewports were screenshoted:</p>
+
+        <% @viewports.each do |viewport| %>
+            <% screenshots_viewport = @url[viewport[:name]] %>
+            <section class="fdb-block" data-block-type="features" data-id="4">
+                <div class="container">
+                    <div class="row text-center">
+                    <div class="col-12">
+                        <h1><%= viewport[:name] %></h1>
+                    </div>
+                    </div>
+        
+                    <div class="row text-center justify-content-center mt-5">
+                    <% screenshots_viewport.each do |screenshot| %>
+                        <div class="col-10 col-sm-3 pt-5 pt-sm-0">
+                            <a target="_blank" href="./images/<%= screenshot[:filename] %>.png">
+                                <img alt="image" class="img-fluid" src="./images/<%= screenshot[:filename] %>.png">
+                            </a>
+                            <!--<h3><strong><%= screenshot[:filename] %></strong></h3>-->
+                        </div>
+                    <% end %>
+                    </div>
+                </div>
+            </section>
+        <% end %>
+    </div> 
+    
+    <footer class="fdb-block footer-large fp-active" data-block-type="footers" data-id="5">
+        <div class="container">
+            <div class="row text-center">
+            <div class="col">
+                <h3>Deutsche Welle</h3>
+            </div>
+            </div>
+    
+            <div class="row mt-4">
+            <div class="col text-center">
+                <p class="text-h3">
+                </p>
+            </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
