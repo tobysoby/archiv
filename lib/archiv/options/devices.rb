@@ -81,6 +81,27 @@ def initiateViewports
         height: 568,
         platform: "Android"
     }
+    @viewports["iPhone SE 11.4.1 saucelabs"] = {
+        saucelabs: true,
+        name: "iPhone_SE_11_real",
+        width: 640,
+        height: 1136,
+        platform: "iOS"
+    }
+    @viewports["iPhone XR 13.5 saucelabs"] = {
+        saucelabs: true,
+        name: "iPhone_XR_13_real",
+        width: 828,
+        height: 1792,
+        platform: "iOS"
+    }
+    @viewports["Samsung Galaxy S10 Android 10 saucelabs"] = {
+        saucelabs: true,
+        name: "Samsung_Galaxy_S10_real",
+        width: 1440,
+        height: 3040,
+        platform: "Android"
+    }
     return @viewports
 end
 

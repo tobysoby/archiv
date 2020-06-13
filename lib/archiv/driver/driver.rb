@@ -3,8 +3,10 @@ require 'appium_lib'
 
 module Archiv
     def self.createDriver(vp)
-        if vp[:appium]
-            driver = getAppiumDriver(vp)
+        if vp[:saucelabs]
+            driver = getSaucelabsDriver(vp)
+        elsif vp[:appium]
+                driver = getAppiumDriver(vp)
         elsif vp[:bitbar]
             driver = getBitbarDriver(vp)
         else
@@ -87,6 +89,32 @@ module Archiv
         puts desired_caps
 
         appium_hub_url = "https://appium.bitbar.com/wd/hub"
+
+        driver = Selenium::WebDriver.for(:remote, desired_capabilities: desired_caps, url: appium_hub_url)
+
+        return driver
+    end
+
+    def self.getSaucelabsDriver(vp)
+
+        desired_caps = {
+            username: @@options[:testobject_username],
+            testobject_api_key: @@options[:testobject_apikey],
+        }
+
+        if vp[:platform] == "iOS"
+            desired_caps['platformName'] = 'iOS'
+            desired_caps['browserName'] = 'safari'
+            desired_caps['deviceOrientation'] = 'portrait'
+            desired_caps['deviceName'] = vp[:name]
+        elsif vp[:platform] == "Android"
+            desired_caps['platformName'] = 'Android'
+            desired_caps['browserName'] = 'chrome'
+            desired_caps['deviceOrientation'] = 'portrait'
+            desired_caps['deviceName'] = vp[:name]
+        end
+
+        appium_hub_url = "https://eu1.appium.testobject.com/wd/hub"
 
         driver = Selenium::WebDriver.for(:remote, desired_capabilities: desired_caps, url: appium_hub_url)
 

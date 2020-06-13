@@ -95,6 +95,8 @@ module Archiv
         compare_path = config["compare_path"]
         report_path = config["report_path"]
         bitbar_apikey = config["bitbar_apikey"]
+        testobject_username = config["testobject_username"]
+        testobject_apikey = config["testobject_apikey"]
         compare_threshold = config["compare_threshold"]
         score_threshold = config["score_threshold"]
 
@@ -107,6 +109,8 @@ module Archiv
         @@options[:compare_path] = compare_path
         @@options[:report_path] = report_path
         @@options[:bitbar_apikey] = bitbar_apikey
+        @@options[:testobject_username] = testobject_username
+        @@options[:testobject_apikey] = testobject_apikey
         @@options[:compare_threshold] = compare_threshold
         @@options[:score_threshold] = score_threshold
     end
